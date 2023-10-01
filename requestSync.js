@@ -5,17 +5,19 @@ const syncRequest = require('sync-request');
 function requestSync(url) {
     // write code to request url synchronously
     try {
+        const startTime = new Date().getTime();
         const response = syncRequest('GET', url);
         if(response.statusCode === 200) {
             const body = response.getBody('utf8');
-            console.log(JSON.parse(body).data);
+            const exeTime = JSON.parse(body).data * 1000 - startTime;
+            console.log(exeTime);
             return null;
         } else {
             console.error("Request failed", response.statusCode);
             return null;
         }
     } catch(err) {
-        console.err("Error", err.message);
+        console.error("Error", err.message);
         return null;
     }
 }

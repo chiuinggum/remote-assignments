@@ -2,19 +2,21 @@ const url = "https://ec2-54-64-246-136.ap-northeast-1.compute.amazonaws.com/dela
 const https = require('https');
 
 function requestCallback(url, callback) {
+    const startTime = new Date().getTime();
     https.get(url, res => {
         let body = '';
-        //callback(res.statusCode);
         res.on('data', data => {
             body += data.toString();
         })
         res.on('end', () => {
-            callback(JSON.parse(body).data);
+            const exeTime = JSON.parse(body).data * 1000 - startTime;
+            callback(exeTime);
         })
     })
 }
 
 function requestPromise(url) {
+    const startTime = new Date().getTime();
     const prom = new Promise((resolve, reject) => {
         const request = https.get(url, res => {
             let body = '';
@@ -22,7 +24,8 @@ function requestPromise(url) {
                 body += data.toString();
             })
             res.on('end', () => {
-                resolve(JSON.parse(body).data);
+                const exeTime = JSON.parse(body).data * 1000 - startTime;
+                resolve(exeTime);
             })
         });
         request.on('error', err => {reject(err);});
