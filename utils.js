@@ -15,8 +15,4 @@ function toFormattedDate(date) {
     return moment(date, 'ddd, DD MMM YYYY HH:mm:ss [GMT]').format('YYYY-MM-DD HH:mm:ss');
 }
 
-function toGMT(date) {
-    return moment(date, "YYYY-MM-DD HH:mm:ss").format("ddd, DD MMM YYYY HH:mm:ss [GMT]");
-}
-
-module.exports = { connectToDatabase, toFormattedDate, toGMT };
+module.exports = { connectToDatabase, toFormattedDate };

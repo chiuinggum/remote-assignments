@@ -1,4 +1,4 @@
-const { connectToDatabase, toGMT } = require('./utils');
+const { connectToDatabase } = require('./utils');
 
 const checkContentType = (req, res, next) => {
     if (req.get('Content-Type') !== 'application/json') {
@@ -30,12 +30,12 @@ const checkValidData = (req, res, next) => {
     const passwordRegex = [/[A-Z]/, /[a-z]/, /[0-9]/, /[~`!@#$%^&*()_\-+={[}\]|:;"'<,>.?/|]/];
     const typesCount = passwordRegex.filter(regex => regex.test(password)).length;
     if (typesCount < 3) {
-        return res.status(400).json({ error: 'Password not strong enough' });
+        return res.status(400).json({ error: 'Password not strong enough.' });
     }
 
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if (!emailRegex.test(email)) {
-        return res.status(400).json({ error: 'Email not in the right form' });
+        return res.status(400).json({ error: 'Email not in the right form.' });
     }
     next();
 };
@@ -46,11 +46,11 @@ const checkEmailExist = async (req, res, next) => {
         const db = await connectToDatabase();
         const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
         if(rows.length > 0) {
-            return res.status(409).json({ error:'Email Already Exists' });
+            return res.status(409).json({ error:'Email Already Exists.' });
         }
         next();
     } catch(err) {
-        return res.status(400).json({ error:'Error querying the database' });
+        return res.status(500).json({ error:'Error querying the database.' });
     }
 };
 
@@ -59,16 +59,14 @@ const checkIfUserExists = async (req, res, next) => {
         const db = await connectToDatabase();
         const [rows] = await db.query('SELECT * FROM user WHERE id = ?', [req.params.id]);
         if(rows.length === 0) {
-            return res.status(403).json({ error: 'User Not Existing' });
+            return res.status(403).json({ error: 'User Not Existing.' });
         }
 
-        const GMTDate = toGMT(rows[0].created_at);
         req.name = rows[0].name;
         req.email = rows[0].email;
-        req.date = GMTDate;
         next();
     } catch(err) {
-        return res.status(400).json({ error: 'Error querying the database' });
+        return res.status(500).json({ error: 'Error querying the database.' });
     }
 };
 

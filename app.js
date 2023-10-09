@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 const { connectToDatabase, toFormattedDate } = require('./utils');
 const { checkContentType, checkRequestDate, checkRequiredBody, checkValidData, checkEmailExist, checkIfUserExists } = require('./middleware');
@@ -20,7 +21,7 @@ app.get('/users/:id', [checkContentType, checkRequestDate, checkIfUserExists], (
                 name: req.name,
                 email: req.email
             },
-            "request-date": req.date
+            "request-date": req.requestDate
         }
     });
 });
@@ -28,11 +29,12 @@ app.get('/users/:id', [checkContentType, checkRequestDate, checkIfUserExists], (
 app.post('/users', [checkContentType, checkRequestDate, checkRequiredBody, checkValidData, checkEmailExist], async (req, res) => {
     try {
         const { name, email, password } = req.body;
+        const encryptedPwd = await bcrypt.hash(password, 10);
         const dbDate = toFormattedDate(req.requestDate);
         const data = {
             name: name,
             email: email,
-            password: password,
+            password: encryptedPwd,
             created_at: dbDate
         };
         
@@ -49,7 +51,7 @@ app.post('/users', [checkContentType, checkRequestDate, checkRequiredBody, check
             }
         });
     } catch(err) {
-        return res.status(400).json({ error: 'Error inserting data' });
+        return res.status(500).json({ error: 'Error inserting data.' });
     }
 });
 
