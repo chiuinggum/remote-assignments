@@ -1,0 +1,35 @@
+[33mcommit 274e1f32795f431959e26a4ef70eb239f66666c1[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: chiuinggum <yuntingchiu@gapp.nthu.edu.tw>
+Date:   Sat Oct 7 16:38:50 2023 +0800
+
+    remote-week2: add 'sign up API' and 'query API'
+
+[33mcommit 4e5eb1d9b7078110fcab316ba39bd103394387b1[m
+Author: chiuinggum <yuntingchiu@gapp.nthu.edu.tw>
+Date:   Tue Oct 3 12:22:40 2023 +0800
+
+    remote-week2: add healthcheck API
+
+[33mcommit 75150fd9aba7b5e8a1e25b570a71af50804e6ac2[m
+Author: chiuinggum <yuntingchiu@gapp.nthu.edu.tw>
+Date:   Sun Oct 1 13:18:59 2023 +0800
+
+    remote-week1: modify requestSync.js and requestAsync.js
+
+[33mcommit cb60523e1a4b0e93ae7f82d39b4c5919cf415aaa[m
+Author: chiuinggum <yuntingchiu@gapp.nthu.edu.tw>
+Date:   Fri Sep 29 18:50:09 2023 +0800
+
+    remote-week1: modify README
+
+[33mcommit 5f00b1a0548d37c7fc36a90943bc6b0207f2f150[m
+Author: chiuinggum <yuntingchiu@gapp.nthu.edu.tw>
+Date:   Fri Sep 29 18:47:51 2023 +0800
+
+    remote-week1: initial commit
+
+[33mcommit a28304f37cc9ee35b6d6e81e704130ad208557d7[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: chiuinggum <135101542+chiuinggum@users.noreply.github.com>
+Date:   Wed Sep 27 22:19:33 2023 +0800
+
+    Initial commit
