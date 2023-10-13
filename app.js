@@ -8,6 +8,7 @@ const { checkContentType, checkRequestDate, checkRequiredBody, checkValidData, c
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static('static'));
 
 app.get('/healthcheck', (req, res) => {
     res.send('OK');
