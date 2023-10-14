@@ -10,7 +10,7 @@ const handleUserSignUp = async () => {
     };
 
     try {
-        const response = await fetch('http://localhost:3000/users', {
+        const response = await fetch('http://13.238.167.235:3000/users', {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
