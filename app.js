@@ -1,13 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
+const cors = require('cors');
 
 const { connectToDatabase, toFormattedDate } = require('./utils');
 const { checkContentType, checkRequestDate, checkRequiredBody, checkValidData, checkEmailExist, checkIfUserExists } = require('./middleware');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('static'));
 
 app.get('/healthcheck', (req, res) => {
     res.send('OK');
